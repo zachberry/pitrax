@@ -1,5 +1,12 @@
-require "pitrax/version"
+require "sinatra"
+require "sinatra/reloader"
+require "erb"
+require_relative "pitrax/version"
 
 module Pitrax
-  # Your code goes here...
+
+	get '/' do
+		erb :index, :locals => { }
+	end
+
 end
