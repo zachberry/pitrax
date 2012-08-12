@@ -1,0 +1,206 @@
+/*200,300,400,600*/
+/* vars */
+/* mixins */
+/* class styles */
+.scrubber {
+  height: 6px;
+  display: inline-block;
+  padding: 6px 0 6px 0; }
+  .scrubber .scrub-bar {
+    background: none;
+    position: relative;
+    width: 100%;
+    height: 6px; }
+  .scrubber .scrub-bar-progress {
+    background: rgba(255, 255, 255, 0.2);
+    width: 50%;
+    height: 6px; }
+  .scrubber .scrub-head {
+    background: #337199;
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    left: 50%;
+    top: 6px;
+    cursor: pointer; }
+  .scrubber .scrub-end {
+    background: rgba(255, 255, 255, 0.2);
+    width: 3px;
+    height: 6px;
+    position: absolute;
+    right: 0;
+    top: 6px; }
+
+.scrubber:hover {
+  height: 12px;
+  background: none; }
+  .scrubber:hover .scrub-bar {
+    height: 12px;
+    background: rgba(255, 255, 255, 0.2); }
+  .scrubber:hover .scrub-bar-progress {
+    height: 12px;
+    background: rgba(255, 255, 255, 0.2); }
+  .scrubber:hover .scrub-end {
+    width: 6px;
+    height: 12px; }
+  .scrubber:hover .scrub-head {
+    width: 12px;
+    height: 12px;
+    margin-left: -3px; }
+
+/* animations */
+@-webkit-keyframes orange-pulse {
+  0% {
+    background-color: orange; }
+
+  50% {
+    background-color: #FFCE74; }
+
+  100% {
+    background-color: orange; } }
+
+/* specific styles */
+body {
+  margin: 0;
+  padding: 0; }
+
+header {
+  background: #313131;
+  color: white;
+  height: 115px; }
+  header .album-art {
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    margin: 10px 15px 0 10px;
+    width: 155px;
+    height: 155px;
+    background: white 4px 4px no-repeat url("http://ecx.images-amazon.com/images/I/31M4MPGQCTL._SL500_AA300_.jpg");
+    background-size: 147px 147px; }
+  header hgroup {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin-top: 15px; }
+    header hgroup h1 {
+      font-weight: 200;
+      font-size: 30pt;
+      margin: 12px 0 0 0; }
+    header hgroup h2 {
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 10pt;
+      margin: 0;
+      position: relative;
+      left: 3px;
+      top: -60px; }
+  header .track-scrubber {
+    position: absolute;
+    left: 186px;
+    top: 84px;
+    right: 300px; }
+  header .track-scrubber:hover {
+    top: 81px; }
+  header .time-remaining {
+    font-weight: 300;
+    position: absolute;
+    line-height: 0;
+    top: 105px;
+    right: 265px;
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 9pt; }
+  header .controls {
+    position: absolute;
+    width: 240px;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    top: 14px;
+    right: 0;
+    height: 87px; }
+    header .controls .prev-track-button,
+    header .controls .next-track-button {
+      width: 44px;
+      height: 44px;
+      border-radius: 22px;
+      background: white;
+      display: inline-block;
+      position: absolute;
+      top: 8px;
+      cursor: pointer; }
+    header .controls .prev-track-button {
+      left: 30px; }
+    header .controls .next-track-button {
+      right: 30px; }
+    header .controls .play-pause-button {
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      background: white;
+      display: block;
+      position: static;
+      margin: 0 auto;
+      cursor: pointer; }
+    header .controls .volume-scrubber {
+      position: absolute;
+      top: 71px;
+      left: 60px;
+      right: 60px; }
+    header .controls .volume-scrubber:hover {
+      top: 68px; }
+
+aside {
+  font-weight: 400;
+  background: #e6e6e6;
+  display: inline-block;
+  position: absolute;
+  top: 115px;
+  bottom: 0;
+  width: 260px;
+  font-size: 11pt;
+  padding: 50px 20px 0 20px; }
+  aside h1, aside h2 {
+    font-weight: 600;
+    color: #84a8bf;
+    text-transform: uppercase;
+    font-size: 12pt; }
+  aside ul {
+    list-style-type: none;
+    padding-left: 0;
+    padding-bottom: 7px; }
+    aside ul li {
+      padding: 3px 0 3px 0; }
+
+aside > :nth-child(2) {
+  /* playlist ul */
+  border-bottom: 1px solid #b8b8b8; }
+
+section {
+  position: absolute;
+  top: 115px;
+  left: 300px;
+  bottom: 0;
+  right: 0;
+  overflow: scroll; }
+  section table {
+    font-size: 10pt;
+    width: 100%; }
+    section table tr:nth-child(odd) td {
+      background: #f7f7f7; }
+    section table th, section table td {
+      padding: 6px 17px; }
+    section table th {
+      font-weight: 400;
+      text-transform: uppercase;
+      font-size: 9pt;
+      text-align: left; }
+    section table td {
+      color: #333333; }
+    section table td:nth-child(3) {
+      color: black; }
+    section table tr:hover td {
+      background: #cbdae4; }
+    section table tr.selected td {
+      background: orange; }
+    section table tr.selected.playing td {
+      -webkit-animation-name: orange-pulse;
+      -webkit-animation-duration: 2s;
+      -webkit-animation-iteration-count: infinite; }

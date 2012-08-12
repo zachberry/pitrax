@@ -1,0 +1,65 @@
+$scrubber_size: 6px;
+$scrubber_size_hover: 12px;
+$scrub_progress_background: rgba(255, 255, 255, .2);
+$scrub_progress_background_hover: rgba(255, 255, 255, .2);
+$scrubber_background: none;
+$scrubber_background_hover: rgba(255, 255, 255, .2);
+
+.scrubber {
+	height: $scrubber_size;
+	display: inline-block;
+	$scrubber_padding: $scrubber_size_hover - $scrubber_size;
+	padding: $scrubber_padding 0 $scrubber_padding 0;
+
+	.scrub-bar {
+		background: $scrubber_background;
+		position: relative;
+		width: 100%;
+		height: $scrubber_size;
+	}
+	.scrub-bar-progress {
+		background: $scrub_progress_background;
+		width: 50%;
+		height: $scrubber_size;
+	}
+	.scrub-head {
+		background: $dark_blue;
+		width: $scrubber_size;
+		height: $scrubber_size;
+		position: absolute;
+		left: 50%;
+		top: $scrubber_size_hover - $scrubber_size;
+		cursor: pointer;
+	}
+	.scrub-end {
+		background: $scrub_progress_background;
+		width: $scrubber_size / 2;
+		height: $scrubber_size;
+		position: absolute;
+		right: 0;
+		top: $scrubber_size_hover - $scrubber_size;
+	}
+}
+.scrubber:hover {
+
+	height: $scrubber_size_hover;
+	background: $scrubber_background;
+
+	.scrub-bar {
+		height: $scrubber_size_hover;
+		background: $scrubber_background_hover;
+	}
+	.scrub-bar-progress {
+		height: $scrubber_size_hover;
+		background: $scrub_progress_background_hover;
+	}
+	.scrub-end {
+		width: $scrubber_size_hover / 2;
+		height: $scrubber_size_hover;
+	}
+	.scrub-head {
+		width: $scrubber_size_hover;
+		height: $scrubber_size_hover;
+		margin-left: -($scrubber_size_hover - $scrubber_size) / 2;
+	}
+}

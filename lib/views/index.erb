@@ -1,2 +1,8 @@
 <p>sup dog</p>
-<%= file_list %>
+<ul>
+<% song_list.each do |song| %>
+	<li>
+		<%= song %> <a href="/play?file=<%= song.path %>">Listen</a>
+	</li>
+<% end %>
+</ul>

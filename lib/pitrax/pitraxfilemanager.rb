@@ -15,14 +15,29 @@ class PitraxFileManager
 
 	def print_list(level = 0, list = @list)
 		tabs = "\t" * level
-		puts tabs + list.name + ':'
+		s = tabs + list.name + ':'
 		list.files.each do |file|
-			puts tabs + "\t#{file.tag}"
+			s = s + (tabs + "\t#{file.tag}")
 		end
 		level += 1
 		list.subdirs.each do |subdir|
-			print_list(level, subdir)
+			s = s + print_list(level, subdir)
 		end
+
+		s
+	end
+
+	def print_html(list = @list)
+		s = "<ul><li>#{@list.name}</li><li>Files:<ul>"
+		list.files.each do |file|
+			#s = s + "<li><audio controls='controls'><source src='play?file=#{file.path}'></audio><a href='play?file=#{file.path}'>#{file.tag}</a></li>"
+			s = s + "<li><a href='play?file=#{file.path}'>#{file.tag}</a></li>"
+		end
+		s = s + "</ul>"
+		list.subdirs.each do |subdir|
+			s = s + print_html(subdir)
+		end
+		s = s + "</ul>"
 	end
 
 	protected
