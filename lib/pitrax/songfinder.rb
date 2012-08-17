@@ -16,12 +16,12 @@ class SongFinder
 
 	protected
 	def scan_dir(target_dir)
-		puts "scan_dir #{target_dir}"
+		#puts "scan_dir #{target_dir}"
 		Dir.entries(target_dir).select do |entry|
 			if actual? entry
 				full_rel_path = File.join(target_dir, entry)
 				if mp3_file?(full_rel_path)
-					db_manager.upsert_song(full_rel_path)
+					db_manager.insert_song_if_new(full_rel_path)
 				elsif dir?(full_rel_path)
 					scan_dir(full_rel_path)
 				end

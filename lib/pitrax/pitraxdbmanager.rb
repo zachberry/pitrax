@@ -18,7 +18,9 @@ class PitraxDBManager
 		#@db.execute "CREATE TABLE IF NOT EXISTS albums (album_id INTEGER PRIMARY KEY, album_name VARCHAR(255), album_artist VARCHAR(255));"
 		@db.execute "CREATE TABLE IF NOT EXISTS songs (song_id INTEGER PRIMARY KEY, path VARCHAR(255) UNIQUE, title VARCHAR(255), artist VARCHAR(255), album VARCHAR(255));"
 
-		@db_song_insert = @db.prepare("INSERT OR REPLACE INTO songs(path, title, artist, album) VALUES(?,?,?,?)")
+		@db_get_id_by_path = @db.prepare("SELECT ifnull(song_id, 0) FROM songs WHERE path = ?")
+		@db_song_insert = @db.prepare("INSERT INTO songs(path, title, artist, album) VALUES(?,?,?,?)")
+		@db_song_update = @db.prepare("UPDATE songs SET path=?, title=?, artist=?, album=? WHERE song_id=?")
 	end
 
 	# DOESNT WORK!
@@ -31,10 +33,39 @@ class PitraxDBManager
 		create_tables
 	end
 
+	def insert_song_if_new(mp3_file_path)
+		song_id = 0
+		@db_get_id_by_path.execute([mp3_file_path]) do |row|
+			row.each do |fields|
+				song_id = fields
+				break
+			end
+		end
+
+		if song_id == 0
+			@db_song_insert.execute([mp3_file_path, tag.title, tag.artist, tag.album])
+		end
+	end
+
+	#@todo - use this or delete it
 	def upsert_song(mp3_file_path)
 		puts "upsert #{mp3_file_path}"
 		tag = Tagger.generate_tag(mp3_file_path)
-		@db_song_insert.execute([mp3_file_path, tag.title, tag.artist, tag.album])
+		song_id = 0
+		@db_get_id_by_path.execute([mp3_file_path]) do |row|
+			row.each do |fields|
+				song_id = fields
+				break
+			end
+		end
+		puts song_id
+		#song_id = @db.get_first_value("SELECT song_id FROM songs WHERE path = '#{mp3_file_path}'")
+#puts song_id
+		if song_id == 0
+			@db_song_insert.execute([mp3_file_path, tag.title, tag.artist, tag.album])
+		else
+			@db_song_update.execute([mp3_file_path, tag.title, tag.artist, tag.album, song_id])
+		end
 	end
 
 	def update_song(song)

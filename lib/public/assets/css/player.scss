@@ -6,7 +6,6 @@ $light_gray: #e6e6e6;
 $dark_blue: #337199;
 $header_height: 115px;
 $album_art_container_size: 155px;
-$album_art_container_padding: 4px;
 $track_scrubber_top: 84px;
 $track_scrubber_left: 186px;
 $track_scrubber_right: 300px;
@@ -58,9 +57,7 @@ header {
 		margin: 10px 15px 0 10px;
 		width: $album_art_container_size;
 		height: $album_art_container_size;
-		$album_art_size: $album_art_container_size - ($album_art_container_padding * 2);
-		background: white $album_art_container_padding $album_art_container_padding no-repeat url('http://ecx.images-amazon.com/images/I/31M4MPGQCTL._SL500_AA300_.jpg');
-		background-size: $album_art_size $album_art_size;
+		background: white;
 	}
 
 	hgroup {

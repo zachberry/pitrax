@@ -75,8 +75,7 @@ header {
     margin: 10px 15px 0 10px;
     width: 155px;
     height: 155px;
-    background: white 4px 4px no-repeat url("http://ecx.images-amazon.com/images/I/31M4MPGQCTL._SL500_AA300_.jpg");
-    background-size: 147px 147px; }
+    background: white; }
   header hgroup {
     display: inline-block;
     vertical-align: top;
