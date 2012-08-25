@@ -227,6 +227,7 @@ aside > :nth-child(2) { /* playlist ul */
 	left: $aside_width;
 	bottom: 0;
 	right: 0;
+	overflow: scroll;
 
 	table {
 		font-size: 10pt;
@@ -277,9 +278,10 @@ aside > :nth-child(2) { /* playlist ul */
 }
 
 /* temp */
+
 .table-wrapper {
-	border: 1px solid red;
-}
+	/*border: 1px solid red;*/
+}/*
 
 .song-listing {
 	width: 100%;
@@ -301,7 +303,6 @@ aside > :nth-child(2) { /* playlist ul */
 	position: absolute;
 	height: 800px;
 	overflow: hidden;
-	/*display: block;*/
 }
 
 
@@ -318,4 +319,4 @@ background-color:#ccc !important
 border-radius:8px !important;
 border:2px solid white !important;
 background-color:rgba(0,0,0,.5) !important
-}
+}*/

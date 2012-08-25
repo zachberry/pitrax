@@ -49,7 +49,7 @@ class Pitrax2 < Sinatra::Base
 	get '/' do
 		erb :player, :locals => {
 			:total => SongManager::total,
-			:songs => get_songs(0, 500),
+			:songs => get_songs(0, 150),
 			:playlists => PlaylistManager::playlists.to_json
 		}
 	end
