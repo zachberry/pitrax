@@ -6,11 +6,36 @@ require_relative "song"
 
 class PitraxDBManager
 
-	attr_reader :song_manager
+	attr_reader :db, :songs, :songs_arr #@TODO: Temporary?
 
-	
+	def initialize(db_file_path)
+		@db_file_path = db_file_path
+		@db = SQLite3::Database.open @db_file_path
+		create_tables
+	end
 
+	def create_tables
+		#@db.execute "CREATE TABLE IF NOT EXISTS albums (album_id INTEGER PRIMARY KEY, album_name VARCHAR(255), album_artist VARCHAR(255));"
+		@db.execute "CREATE TABLE IF NOT EXISTS songs (song_id INTEGER PRIMARY KEY, path VARCHAR(255) UNIQUE, title VARCHAR(255), artist VARCHAR(255), album VARCHAR(255));"
+		@db.execute "CREATE TABLE IF NOT EXISTS playlists (playlist_id INTEGER PRIMARY KEY, title VARCHAR(255), date_created DATETIME, date_last_modified DATETIME, songs TEXT);"
 
+		@db_get_song_id_by_path = @db.prepare("SELECT ifnull(song_id, 0) FROM songs WHERE path = ?")
+		@db_song_insert = @db.prepare("INSERT INTO songs(path, title, artist, album) VALUES(?,?,?,?)")
+		@db_song_update = @db.prepare("UPDATE songs SET path=?, title=?, artist=?, album=? WHERE song_id=?")
+
+		@db_playlist_insert = @db.prepare("INSERT INTO playlists(title, date_created, date_last_modified, songs) VALUES(?,DATETIME(NOW),DATETIME(NOW),?)")
+		@db_playlist_update = @db.prepare("UPDATE playlists SET title=?, date_last_modified=DATETIME(now), songs=?")
+	end
+
+	# DOESNT WORK!
+	def clear_db
+		# finalize prepareds (do this somewhere else?)
+
+		@db.close
+		File.delete @db_file_path
+		@db = SQLite3::Database.open @db_file_path
+		create_tables
+	end
 
 	def insert_song_if_new(mp3_file_path)
 		song_id = 0

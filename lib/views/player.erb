@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <head>
 	<title>pitrax</title>
-	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600' rel='stylesheet' type='text/css'>
+	<!--@TODO-->
+	<!--<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600' rel='stylesheet' type='text/css'>-->
 	<link rel="stylesheet" href="/assets/css/global.css">
 	<link rel="stylesheet" href="/assets/css/player.css">
 	<script type="text/javascript" src="/assets/js/jquery.min.js"></script>
 	<script type="text/javascript" src="/assets/js/underscore-min.js"></script>
 	<script type="text/javascript" src="/assets/js/json2.js"></script>
 	<script type="text/javascript" src="/assets/js/backbone-min.js"></script>
+	<script type="text/javascript" src="/assets/js/jquery.color-2.0b1.min.js"></script>
 
 	<script type="text/javascript" src="/assets/js/player.js"></script>
 
 	<script type="text/javascript">
+		_total = <%= total %>;
 		_songs = <%= songs %>;
+		_playlists = <%= playlists %>;
 	</script>
 </head>
 <body>
 	<header>
+		<div id="album-color" class="album-color"></div>
 		<img id="album-art" class="album-art" src="/assets/img/no-art.png"></img>
+		<canvas id="album-canvas" class="album-canvas"></canvas>
 		<hgroup>
-			<h1 id="song-title" class="song-title">No song selected</h1>
+			<h1 id="song-title" class="song-title"></h1>
 			<h2 id="artist" class="artist"></h2>
 		</hgroup>
 		<audio id="audio"></audio>
@@ -33,7 +39,7 @@
 		<span id="time-remaining" class="time-remaining">2:12</span>
 		<div id="controls" class="controls">
 			<div id="prev-track-button" class="prev-track-button" role="button"></div>
-			<div id="play-pause-button" class="play-pause-button" role="button"></div>
+			<div id="play-pause-button" class="play-pause-button paused" role="button"></div>
 			<div id="next-track-button" class="next-track-button" role="button"></div>
 			<div id="volume-scrubber" class="scrubber volume-scrubber">
 				<div id="scrub-bar" class="scrub-bar">
@@ -46,40 +52,36 @@
 	</header>
 	<aside>
 		<h1>Playlists</h1>
-		<ul>
-			<li>july 4th</li>
-			<li>New Wave</li>
-			<li>+</li>
+		<ul id="playlists" class="playlists">
 		</ul>
 		<h2>Queue (4)</h2>
-		<ul>
+		<ul id="queue" class="queue">
+			<!--
 			<li class="playing">Orbital - Impact (The World is Burning)</li>
 			<li class="playing-next">Underworld - Cups</li>
 			<li>Underworld - Push Upstairs</li>
-			<li>Orbita - Lush 3.2</li>
+			<li>Orbita - Lush 3.2</li>-->
 		</ul>
 	</aside>
-	<section>
+	<section id="library" class="library">
 		<input type="text" id="search" class="search"></div>
 		<div id="settings-button" class="settings-button" role="button"></div>
-		<table>
-			<tr>
-				<th>Artist</th>
-				<th>Album</th>
-				<th>Song</th>
-				<th>#</th>
-				<th>Time</th>
-				<th>Genre</th>
-			</tr>
-			<tr class="template">
-				<td>Orbital</td>
-				<td>The Brown Album</td>
-				<td>Song</td>
-				<td>#</td>
-				<td>Time</td>
-				<td>Genre</td>
-			</tr>
+		<table id="library-heading" class="library-heading">
+			<thead>
+				<tr>
+					<th>Artist</th>
+					<th>Album</th>
+					<th>Song</th>
+					<th>#</th>
+					<th>Time</th>
+					<th>Genre</th>
+				</tr>
+			</thead>
 		</table>
+		<table id="library-table" class="library-table"></table>
+		<section id="song-listing" class="song-listing">
+			<div id="library-table-scroll" class="library-table-scroll"></div>
+		</section>
 	</section>
 </body>
 </html>

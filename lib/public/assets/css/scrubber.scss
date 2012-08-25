@@ -21,15 +21,17 @@ $scrubber_background_hover: rgba(255, 255, 255, .2);
 		background: $scrub_progress_background;
 		width: 50%;
 		height: $scrubber_size;
+		border-radius: $scrubber_size;
 	}
 	.scrub-head {
-		background: $dark_blue;
+		opacity: 0;
 		width: $scrubber_size;
 		height: $scrubber_size;
 		position: absolute;
 		left: 50%;
 		top: $scrubber_size_hover - $scrubber_size;
 		cursor: pointer;
+		border-radius: $scrubber_size;
 	}
 	.scrub-end {
 		background: $scrub_progress_background;
@@ -58,6 +60,8 @@ $scrubber_background_hover: rgba(255, 255, 255, .2);
 		height: $scrubber_size_hover;
 	}
 	.scrub-head {
+		opacity: 1;
+		background: white;
 		width: $scrubber_size_hover;
 		height: $scrubber_size_hover;
 		margin-left: -($scrubber_size_hover - $scrubber_size) / 2;

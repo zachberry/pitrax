@@ -1,11 +1,10 @@
-require_relative 'pitraxdbmanager'
 require_relative 'songfinder'
 require_relative 'settings'
 
 module Updater
 	def self.update
-		dbm = PitraxDBManager.new(Settings::MUSIC_DB)
-		songFinder = SongFinder.new(Settings::MUSIC_DIR, dbm)
+		#dbm = PitraxDBManager.new(Settings::MUSIC_DB)
+		songFinder = SongFinder.new(Settings::MUSIC_DIR)
 		songFinder.find_songs
 	end
 
