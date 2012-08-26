@@ -14,8 +14,13 @@ class Song
 	@@db_update = PitraxDB::db.prepare("UPDATE songs SET path=?, title=?, artist=?, album=? WHERE song_id=?")
 
 	def self.get(song_id)
-		@@db_select.execute() do |row|
-			return self.create(row)
+		@@db_select.execute([song_id]) do |row|
+			fields = []
+			row.each do |field|
+				fields.push(field)
+			end
+
+			return self.create(fields[0])
 		end
 	end
 

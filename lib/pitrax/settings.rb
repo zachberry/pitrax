@@ -1,7 +1,7 @@
 module Settings
 	MUSIC_DIR = 'media'
 	#MUSIC_DIR = '/Volumes/Music/collection/tagged/mp3'
-	MUSIC_DB = 'music.db'
+	MUSIC_DB = 'music2.db'
 	ART_DIR = 'art'
 
 	LASTFM_KEY = '5860fc3c73a12b34afc98dbbae3a3228'

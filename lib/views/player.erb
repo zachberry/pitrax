@@ -2,8 +2,7 @@
 <html>
 <head>
 	<title>pitrax</title>
-	<!--@TODO-->
-	<!--<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600' rel='stylesheet' type='text/css'>-->
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="/assets/css/global.css" />
 	<link rel="stylesheet" href="/assets/css/player.css" />
 	<script type="text/javascript" src="/assets/js/jquery.min.js"></script>
@@ -15,8 +14,7 @@
 	<script type="text/javascript" src="/assets/js/player.js"></script>
 
 	<script type="text/javascript">
-		_total = <%= total %>;
-		_songs = <%= songs %>;
+		_songSet = <%= song_set %>;
 		_playlists = <%= playlists %>;
 	</script>
 </head>
@@ -65,25 +63,23 @@
 		</ul>
 	</aside>
 	<section id="library" class="library">
-		<input type="text" id="search" class="search"></div>
-		<div id="settings-button" class="settings-button" role="button"></div>
-		<table id="library-heading" class="library-heading">
-			<thead>
-				<tr>
-					<th>Artist</th>
-					<th>Album</th>
-					<th>Song</th>
-					<th>#</th>
-					<th>Time</th>
-					<th>Genre</th>
-				</tr>
-			</thead>
-		</table>
-		
-		<section id="song-listing" class="song-listing">
-			<div id="library-table-scroll" class="library-table-scroll"></div>
+		<section id="library-heading" class="library-heading">
+			<input type="text" id="search" class="search"></div><button id="submit-search" class="submit-search">Search</button>
+			<div id="settings-button" class="settings-button" role="button"></div>
+			<table>
+				<thead>
+					<tr>
+						<th>Artist</th>
+						<th>Album</th>
+						<th>Song</th>
+						<th>#</th>
+						<th>Time</th>
+						<th>Genre</th>
+					</tr>
+				</thead>
+			</table>
 		</section>
-		<table id="library-table" class="library-table"></table>
+		<section id="library-content" class="library-content"></section>
 	</section>
 </body>
 </html>

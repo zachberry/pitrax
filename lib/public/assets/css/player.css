@@ -192,12 +192,15 @@ aside {
   aside ul {
     list-style-type: none;
     padding-left: 0;
-    padding-bottom: 7px; }
+    padding-bottom: 7px;
+    font-size: 10pt; }
     aside ul li {
       padding: 3px 0 3px 0;
       cursor: default; }
     aside ul li:hover {
       opacity: .8; }
+    aside ul li.playing {
+      font-weight: bold; }
 
 aside > :nth-child(2) {
   /* playlist ul */
@@ -208,8 +211,17 @@ aside > :nth-child(2) {
   top: 115px;
   left: 300px;
   bottom: 0;
-  right: 0;
-  overflow: scroll; }
+  right: 0; }
+  .library .library-heading {
+    height: 50px;
+    border-bottom: 1px solid gray; }
+  .library .library-content {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: scroll; }
   .library table {
     font-size: 10pt;
     width: 100%;
@@ -247,7 +259,7 @@ aside > :nth-child(2) {
 
 /* temp */
 .table-wrapper {
-  /*border: 1px solid red;*/ }
+  border: 1px solid red; }
 
  /*
 

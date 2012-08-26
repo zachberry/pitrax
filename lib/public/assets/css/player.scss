@@ -19,6 +19,7 @@ $volume_scrubber_left: 60px;
 $volume_scrubber_right: 60px;
 $aside_width: 300px;
 $aside_padding: 20px;
+$library_heading_height: 50px;
 
 /* mixins */
 @mixin font_extra_light { font-weight: 200; }
@@ -206,6 +207,7 @@ aside {
 		list-style-type: none;
 		padding-left: 0;
 		padding-bottom: 7px;
+		font-size: 10pt;
 
 		li {
 			padding: 3px 0 3px 0;
@@ -214,6 +216,10 @@ aside {
 
 		li:hover {
 			opacity: .8;
+		}
+
+		li.playing {
+			font-weight: bold;
 		}
 	}
 }
@@ -227,7 +233,20 @@ aside > :nth-child(2) { /* playlist ul */
 	left: $aside_width;
 	bottom: 0;
 	right: 0;
-	overflow: scroll;
+
+	.library-heading {
+		height: $library_heading_height;
+		border-bottom: 1px solid gray;
+	}
+
+	.library-content {
+		position: absolute;
+		top: $library_heading_height;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		overflow: scroll;
+	}
 
 	table {
 		font-size: 10pt;
@@ -280,7 +299,7 @@ aside > :nth-child(2) { /* playlist ul */
 /* temp */
 
 .table-wrapper {
-	/*border: 1px solid red;*/
+	border: 1px solid red;
 }/*
 
 .song-listing {

@@ -41,21 +41,25 @@ class Pitrax2 < Sinatra::Base
 	# 	end
 	# end
 
-	def get_songs(from, to)
-		songs = SongManager::songs(to - from, from)
-		{:range => [from, to], :songs => songs}.to_json
+	def get_songs(from, to, search)
+		result = SongManager::songs(to - from + 1, from, search)
+		{
+			:total => result[:total],
+			:range => [from, to],
+			:search => search.nil? ? '' : search,
+			:songs => result[:songs]
+		}.to_json
 	end
 
 	get '/' do
 		erb :player, :locals => {
-			:total => SongManager::total,
-			:songs => get_songs(0, 150),
+			:song_set => get_songs(0, 150, ''),
 			:playlists => PlaylistManager::playlists.to_json
 		}
 	end
 
 	get '/songs/:from-:to' do
-		get_songs(params[:from].to_i, params[:to].to_i)
+		get_songs(params[:from].to_i, params[:to].to_i, params[:s])
 	end
 
 	get '/config' do
@@ -113,8 +117,6 @@ class Pitrax2 < Sinatra::Base
 		art_getter = AlbumArt.new(Settings::ART_DIR, Settings::LASTFM_KEY, 'lib/public/assets/img/no-art.png')
 		art = art_getter.get_art(song, size)
 		if art
-			puts 'send_file'
-			puts art
 			send_file art
 		end
 	end
