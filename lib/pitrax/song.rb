@@ -6,13 +6,14 @@ require_relative "pitraxdb"
 
 class Song
 
-	attr_accessor :id, :path, :title, :artist, :album
+	attr_accessor :id, :path, :title, :artist, :album, :index
 
 	@@db_select = PitraxDB::db.prepare("SELECT * FROM songs WHERE song_id=?")
 	@@db_insert = PitraxDB::db.prepare("INSERT INTO songs(path, title, artist, album) VALUES(?,?,?,?)")
 	@@db_delete = PitraxDB::db.prepare("DELETE FROM songs WHERE song_id=?")
 	@@db_update = PitraxDB::db.prepare("UPDATE songs SET path=?, title=?, artist=?, album=? WHERE song_id=?")
 
+	#@TODO: Need to cache songs again so this doesnt have to hit the DB every time
 	def self.get(song_id)
 		@@db_select.execute([song_id]) do |row|
 			fields = []
@@ -20,17 +21,18 @@ class Song
 				fields.push(field)
 			end
 
-			return self.create(fields[0])
+			return self.create(fields[0], 0)
 		end
 	end
 
-	def self.create(row)
+	def self.create(row, index)
 		song = self.new
 		song.id = row[0]
 		song.path = row[1]
 		song.title = row[2]
 		song.artist = row[3]
 		song.album = row[4]
+		song.index = index
 
 		song
 	end
@@ -68,11 +70,18 @@ class Song
 	end
 
 	def to_json(*a)
-		{"id" => @id, "path" => @path, "title" => @title, "artist" => @artist, "album" => @album}.to_json(*a)
+		{
+			"id" => @id,
+			"path" => @path,
+			"title" => @title,
+			"artist" => @artist,
+			"album" => @album,
+			"index" => @index
+		}.to_json(*a)
 	end
 
 	def self.json_create(o)
-		new(o['id'], o['path'], o['title'], o['artist'], o['album'])
+		new(o['id'], o['path'], o['title'], o['artist'], o['album'], ['index'])
 	end
 
 end

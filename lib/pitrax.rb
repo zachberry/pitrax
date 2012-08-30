@@ -58,8 +58,8 @@ class Pitrax2 < Sinatra::Base
 		}
 	end
 
-	get '/songs/:from-:to' do
-		get_songs(params[:from].to_i, params[:to].to_i, params[:s])
+	get '/songs' do
+		get_songs(params[:from].to_i, params[:to].to_i, params[:q])
 	end
 
 	get '/config' do

@@ -39,10 +39,12 @@ module SongManager
 
 		# get the songs
 		matched_songs = [];
+		i = start_from
 		PitraxDB::db.execute("SELECT * FROM songs WHERE #{sql_where} ORDER BY artist, album LIMIT #{limit} OFFSET #{start_from}") do |row|
-			song = Song::create(row)
+			song = Song::create(row, i)
 			#@@songs_map[row[0]] = song
 			matched_songs.push(song)
+			i += 1
 		end
 
 		# get the total
