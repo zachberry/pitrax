@@ -300,7 +300,24 @@ aside > :nth-child(2) { /* playlist ul */
 
 .table-wrapper {
 	/*border: 1px solid red;*/
-}/*
+}
+
+.scroll-faker {
+	background: rgba(255, 0, 0, .2);
+	width: 200px;
+}
+
+.library-data-grid {
+	border-spacing: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: rgba(0,0,255,.2);
+	display: block;
+}
+/*
 
 .song-listing {
 	width: 100%;
