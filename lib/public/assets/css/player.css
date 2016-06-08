@@ -3,6 +3,9 @@
 /* mixins */
 /* class styles */
 .scrubber {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
   height: 6px;
   display: inline-block;
   padding: 6px 0 6px 0; }
@@ -10,10 +13,12 @@
     background: none;
     position: relative;
     width: 100%;
-    height: 6px; }
+    height: 6px;
+    border-radius: 6px;
+    padding-right: 6px; }
   .scrubber .scrub-bar-progress {
     background: rgba(255, 255, 255, 0.2);
-    width: 50%;
+    width: 0;
     height: 6px;
     border-radius: 6px; }
   .scrubber .scrub-head {
@@ -21,30 +26,23 @@
     width: 6px;
     height: 6px;
     position: absolute;
-    left: 50%;
+    left: 0;
     top: 6px;
     cursor: pointer;
     border-radius: 6px; }
-  .scrubber .scrub-end {
-    background: rgba(255, 255, 255, 0.2);
-    width: 3px;
-    height: 6px;
-    position: absolute;
-    right: 0;
-    top: 6px; }
 
 .scrubber:hover {
   height: 12px;
   background: none; }
   .scrubber:hover .scrub-bar {
     height: 12px;
-    background: rgba(255, 255, 255, 0.2); }
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px; }
   .scrubber:hover .scrub-bar-progress {
     height: 12px;
-    background: rgba(255, 255, 255, 0.2); }
-  .scrubber:hover .scrub-end {
-    width: 6px;
-    height: 12px; }
+    background: rgba(255, 255, 255, 0.2);
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0; }
   .scrubber:hover .scrub-head {
     opacity: 1;
     background: white;
@@ -118,9 +116,9 @@ header {
     font-weight: 300;
     position: absolute;
     line-height: 0;
-    top: 105px;
-    right: 265px;
-    color: rgba(255, 255, 255, 0.2);
+    top: 93px;
+    right: 254px;
+    color: rgba(255, 255, 255, 0.7);
     font-size: 9pt; }
   header .controls {
     position: absolute;
@@ -211,7 +209,8 @@ aside > :nth-child(2) {
   top: 115px;
   left: 300px;
   bottom: 0;
-  right: 0; }
+  right: 0;
+  overflow: hidden; }
   .library .library-heading {
     height: 50px;
     border-bottom: 1px solid gray; }
@@ -224,7 +223,7 @@ aside > :nth-child(2) {
     overflow: scroll; }
   .library table {
     font-size: 10pt;
-    width: 100%;
+    /*width: 760px;*/
     table-layout: fixed;
     /* get rid of selection when holding down shift */
     user-select: none;
@@ -235,19 +234,22 @@ aside > :nth-child(2) {
     			background: #f7f7f7;
     		}*/ }
     .library table th, .library table td {
-      padding: 6px 17px; }
+      padding: 6px 17px;
+      color: #333333;
+      width: 50px;
+      overflow: hidden;
+      white-space: nowrap;
+      display: inline-block; }
     .library table th {
       font-weight: 400;
       text-transform: uppercase;
       font-size: 9pt;
       text-align: left; }
-    .library table td {
-      color: #333333;
-      width: 100px;
-      overflow: hidden;
-      white-space: nowrap; }
-    .library table td:nth-child(3) {
-      color: black; }
+    .library table th:nth-child(1), .library table th:nth-child(2), .library table td:nth-child(1), .library table td:nth-child(2) {
+      width: 100px; }
+    .library table th:nth-child(3), .library table td:nth-child(3) {
+      color: black;
+      width: 200px; }
     .library table tr:hover td {
       background: #cbdae4; }
     .library table tr.selected td {
@@ -262,18 +264,41 @@ aside > :nth-child(2) {
   /*border: 1px solid red;*/ }
 
 .scroll-faker {
-  background: rgba(255, 0, 0, 0.2);
-  width: 200px; }
+  /*background: rgba(255, 0, 0, .2);*/
+  width: 100%;
+  /** width not important */ }
 
 .library-data-grid {
   border-spacing: 0;
   position: absolute;
-  top: 0;
+  top: 50px;
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(0, 0, 255, 0.2);
+  /*background: rgba(0,0,255,.2);*/
   display: block; }
+
+.hover {
+  background: #cbdae4; }
+
+.throbber {
+  width: 42px;
+  height: 42px;
+  border-radius: 23px;
+  background: white url("/assets/img/throbber.gif") no-repeat 5px 5px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: 0 auto;
+  margin-top: -21px; }
+
+#slider {
+  position: absolute;
+  top: 0px;
+  left: 200px;
+  width: 200px; }
 
 /*
 

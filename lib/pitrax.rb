@@ -1,5 +1,5 @@
 require "sinatra"
-require "sinatra/reloader"
+# require "sinatra/reloader"
 require "erb"
 require "json"
 require "open-uri"
@@ -53,7 +53,7 @@ class Pitrax2 < Sinatra::Base
 
 	get '/' do
 		erb :player, :locals => {
-			:song_set => get_songs(0, 150, ''),
+			:song_set => get_songs(0, 500, ''),
 			:playlists => PlaylistManager::playlists.to_json
 		}
 	end
@@ -84,7 +84,7 @@ class Pitrax2 < Sinatra::Base
 	get '/update' do
 		require_relative "pitrax/updater"
 		Updater.update
-		
+
 		erb :update, :locals => { }
 	end
 

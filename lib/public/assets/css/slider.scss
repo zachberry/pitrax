@@ -5,11 +5,44 @@ $scrub_progress_background_hover: rgba(255, 255, 255, .2);
 $scrubber_background: none;
 $scrubber_background_hover: rgba(255, 255, 255, .2);
 
-.scrubber {
-	user-select: none;
-	-moz-user-select: none;
-	-webkit-user-select: none;
+/*
+.slider {
+	border: none;
+	background: $scrubber_background;
+	background: red;
+	height: $scrubber_size;
+	margin-top: ($scrubber_size_hover - $scrubber_size) / 2;
 
+	.ui-slider-handle {
+		border: none;
+		opacity: .7;
+		width: $scrubber_size;
+		height: $scrubber_size;
+		position: absolute;
+		left: 50%;
+		top: $scrubber_size_hover - $scrubber_size;
+		cursor: pointer;
+		border-radius: $scrubber_size;
+	}
+}*/
+.slider {
+	height: $scrubber_size_hover;
+	background: red;
+	border-radius: $scrubber_size_hover;
+	margin-top: 0;
+
+	.ui-slider-handle {
+		opacity: .8;
+		background: white;
+		top: 0;
+		width: $scrubber_size_hover;
+		height: $scrubber_size_hover;
+		/*margin-left: -($scrubber_size_hover - $scrubber_size) / 2;*/
+		margin-left: 0;
+	}
+}
+
+.scrubber {
 	height: $scrubber_size;
 	display: inline-block;
 	$scrubber_padding: $scrubber_size_hover - $scrubber_size;
@@ -20,12 +53,10 @@ $scrubber_background_hover: rgba(255, 255, 255, .2);
 		position: relative;
 		width: 100%;
 		height: $scrubber_size;
-		border-radius: $scrubber_size;
-		padding-right: $scrubber_size;
 	}
 	.scrub-bar-progress {
 		background: $scrub_progress_background;
-		width: 0;
+		width: 50%;
 		height: $scrubber_size;
 		border-radius: $scrubber_size;
 	}
@@ -34,10 +65,18 @@ $scrubber_background_hover: rgba(255, 255, 255, .2);
 		width: $scrubber_size;
 		height: $scrubber_size;
 		position: absolute;
-		left: 0;
+		left: 50%;
 		top: $scrubber_size_hover - $scrubber_size;
 		cursor: pointer;
 		border-radius: $scrubber_size;
+	}
+	.scrub-end {
+		background: $scrub_progress_background;
+		width: $scrubber_size / 2;
+		height: $scrubber_size;
+		position: absolute;
+		right: 0;
+		top: $scrubber_size_hover - $scrubber_size;
 	}
 }
 .scrubber:hover {
@@ -48,13 +87,14 @@ $scrubber_background_hover: rgba(255, 255, 255, .2);
 	.scrub-bar {
 		height: $scrubber_size_hover;
 		background: $scrubber_background_hover;
-		border-radius: $scrubber_size_hover;
 	}
 	.scrub-bar-progress {
 		height: $scrubber_size_hover;
 		background: $scrub_progress_background_hover;
-		border-top-right-radius: 0;
-		border-bottom-right-radius: 0;
+	}
+	.scrub-end {
+		width: $scrubber_size_hover / 2;
+		height: $scrubber_size_hover;
 	}
 	.scrub-head {
 		opacity: 1;

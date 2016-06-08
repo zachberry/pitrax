@@ -112,9 +112,9 @@ header {
 
 		position: absolute;
 		line-height: 0;
-		top: $track_scrubber_top + 21px;
-		right: $track_scrubber_right - 35px;
-		color: $scrub_progress_background;
+		top: $track_scrubber_top + 9px;
+		right: $track_scrubber_right - 46px;
+		color: rgba(255, 255, 255, .7);
 		font-size: 9pt;
 	}
 
@@ -233,6 +233,7 @@ aside > :nth-child(2) { /* playlist ul */
 	left: $aside_width;
 	bottom: 0;
 	right: 0;
+	overflow: hidden;
 
 	.library-heading {
 		height: $library_heading_height;
@@ -250,7 +251,7 @@ aside > :nth-child(2) { /* playlist ul */
 
 	table {
 		font-size: 10pt;
-		width: 100%;
+		/*width: 760px;*/
 
 		table-layout: fixed;
 
@@ -264,6 +265,11 @@ aside > :nth-child(2) { /* playlist ul */
 		}*/
 		th, td {
 			padding: 6px 17px;
+			color: #333333;
+			width: 50px;
+			overflow: hidden;
+			white-space: nowrap;
+			display: inline-block;
 		}
 		th
 		{
@@ -273,14 +279,12 @@ aside > :nth-child(2) { /* playlist ul */
 			font-size: 9pt;
 			text-align: left;
 		}
-		td {
-			color: #333333;
+		th:nth-child(1), th:nth-child(2), td:nth-child(1), td:nth-child(2) {
 			width: 100px;
-			overflow: hidden;
-			white-space: nowrap;
 		}
-		td:nth-child(3) {
+		th:nth-child(3), td:nth-child(3) {
 			color: black;
+			width: 200px;
 		}
 		tr:hover td {
 			background: #cbdae4;
@@ -303,20 +307,49 @@ aside > :nth-child(2) { /* playlist ul */
 }
 
 .scroll-faker {
-	background: rgba(255, 0, 0, .2);
-	width: 200px;
+	/*background: rgba(255, 0, 0, .2);*/
+	width: 100%; /** width not important */
 }
 
 .library-data-grid {
 	border-spacing: 0;
 	position: absolute;
-	top: 0;
+	top: $library_heading_height;
 	left: 0;
 	bottom: 0;
 	right: 0;
-	background: rgba(0,0,255,.2);
+	/*background: rgba(0,0,255,.2);*/
 	display: block;
 }
+
+.hover {
+	background: #cbdae4;
+}
+
+.throbber {
+	width: 42px;
+	height: 42px;
+	border-radius: 23px;
+	background: white url('/assets/img/throbber.gif') no-repeat 5px 5px;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: 0 auto;
+	margin-top: -21px;
+}
+
+#slider
+{
+	position: absolute;
+	top: 0px;
+	left: 200px;
+	width: 200px;
+	
+}
+
+
 /*
 
 .song-listing {
